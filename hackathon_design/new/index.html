@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BioVerse – NASA Space Biology Dashboard</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- 🌐 NAVBAR -->
+  <header>
+    <div class="logo">🧬 BioVerse</div>
+    <nav>
+      <a href="#search">Search</a>
+      <a href="#graph">Explore</a>
+      <a href="#trends">Trends</a>
+      <a href="#learn">Learn</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <!-- 🌠 Space Background -->
+  <div class="space-bg">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+  </div>
+
+  <!-- 🚀 HERO SECTION -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Explore NASA’s Space Biology<br><span>Made Simple </span></h1>
+      <div class="search-box">
+        <input type="text" placeholder="Ask about microgravity on plants...">
+        <button><i class="fas fa-search"></i></button>
+      </div>
+
+      <div class="quick-links">
+        <a href="#search" class="card"><i class="fas fa-search"></i><span>Search Papers</span></a>
+        <a href="#trends" class="card"><i class="fas fa-chart-line"></i><span>Explore Trends</span></a>
+        <a href="#learn" class="card"><i class="fas fa-graduation-cap"></i><span>Learn & Play</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔍 SEARCH & SUMMARIES -->
+  <section id="search" class="section">
+    <h2>🔍 Smart Search & Summaries</h2>
+    <p>Instantly find AI-generated summaries of NASA’s space biology publications.</p>
+    <div class="results">
+      <div class="paper-card">
+        <h3>🌱 Effects of Microgravity on Arabidopsis Growth</h3>
+        <p><strong>Summary:</strong> AI analysis shows reduced root growth and altered gene expression in space-grown plants, impacting nutrient uptake and signaling pathways.</p>
+        <div class="tags">
+          <span class="tag easy">🟢 Easy</span>
+          <span class="tag mission">ISS Mission</span>
+          <span class="tag year">2021</span>
+        </div>
+      </div>
+
+      <div class="paper-card">
+        <h3>🧬 Human Muscle Atrophy During Spaceflight</h3>
+        <p><strong>Summary:</strong> Astronaut muscle tissue shows 25% reduction in mass after 180 days in microgravity. Results inform exercise countermeasures for Mars missions.</p>
+        <div class="tags">
+          <span class="tag medium">🟡 Medium</span>
+          <span class="tag mission">Shuttle Program</span>
+          <span class="tag year">2018</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🕸 KNOWLEDGE GRAPH -->
+  <section id="graph" class="section">
+    <h2>🕸 Knowledge Graph Explorer</h2>
+    <p>Visualize links between organisms, experiments, and missions.</p>
+    <div class="graph-area">
+      <div class="node">
+        🌱 Arabidopsis
+        <div class="sub">Linked: Gene Exp. Study, ISS, Gravity Response</div>
+      </div>
+      <div class="node">
+        👩‍🚀 Human Muscle
+        <div class="sub">Linked: Shuttle Mission, Health Effects</div>
+      </div>
+      <div class="node">
+        🛰️ ISS Mission
+        <div class="sub">Linked: 180+ Experiments</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📈 TRENDS -->
+  <section id="trends" class="section">
+    <h2>📈 Trends & Insights</h2>
+    <p>Discover research focus areas and gaps over time.</p>
+    <div class="charts">
+      <div class="chart">
+        <h4>Top Researched Organisms</h4>
+        <img src="https://quickchart.io/chart?c={type:'bar',data:{labels:['Human','Plant','Microbe'],datasets:[{data:[340,210,80]}]}}"/>
+      </div>
+      <div class="chart">
+        <h4>Publications Over Time</h4>
+        <img src="https://quickchart.io/chart?c={type:'line',data:{labels:['2000','2005','2010','2015','2020'],datasets:[{data:[50,120,230,400,608]}]}}"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🌱 LEARNING HUB -->
+  <section id="learn" class="section">
+    <h2>🌱 Learning Hub</h2>
+    <p>Play quiz challenges & earn badges while exploring space biology!</p>
+    <div class="quiz-card">
+      <p><strong>Quiz:</strong> What is a major effect of microgravity on plant roots?</p>
+      <ul>
+        <li>🌿 A. Increased root density</li>
+        <li>🌊 B. Altered root growth direction ✅</li>
+        <li>🔥 C. Faster nutrient uptake</li>
+      </ul>
+      <button>Next ➡️</button>
+    </div>
+  </section>
+
+  <!-- ℹ️ ABOUT -->
+  <section id="about" class="section">
+    <h2>ℹ️ About BioVerse</h2>
+    <p>
+      BioVerse transforms NASA’s complex bioscience archives into interactive stories, graphs, and AI summaries — empowering scientists, mission planners, and curious explorers.
+    </p>
+    <div class="contact">
+      <button>Contact Us</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 BioVerse | Built for NASA Space Biology Hackathon 🛰️</p>
+  </footer>
+
+</body>
+</html>
