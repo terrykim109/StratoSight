@@ -7,7 +7,7 @@ A group of six students from Centennial Software Engineering Program and Seneca 
 **Terry Kim** - Seneca College Computer Programming And Analysis   
 **Asra Jannat Bari** - Centennial College Software Engineering      
 **Kayal Jennnifer Christopher** - Centennial College Software Engineering     
-**Jeremy Ng**  - Seneca Collge Computer Programming And Analysis  
+**Jeremy Ng**  - Seneca College Computer Programming And Analysis  
 **Ashwin Parackal Aji** - Centennial College Software Engineering     
 **Lamia Alam Shova** - Centennial College Software Engineering   
 
