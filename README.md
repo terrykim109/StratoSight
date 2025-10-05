@@ -4,12 +4,12 @@
 
 A group of six students from Centennial Software Engineering Program and Seneca College Computer Programming and Analysis Program for NASA Hackathon Oct 4-5, 2025.
 
+Terry Kim - Seneca College Computer Programming And Analysis 
 Asra Jannat Bari - Centennial College Software Engineering  
 Kayal Jennnifer Christopher - Centennial College Software Engineering   
 Jeremy Ng  - Seneca Collge Computer Programming And Analysis  
 Ashwin Parackal Aji - Centennial College Software Engineering     
 Lamia Alam Shova - Centennial College Software Engineering   
-Terry Kim - Seneca College Computer Programming And Analysis 
 
 </div>
 
@@ -20,7 +20,6 @@ Terry Kim - Seneca College Computer Programming And Analysis
 ![BioVerse Banner](https://img.shields.io/badge/NASA-Space%20Biology-0B3D91?style=for-the-badge&logo=nasa&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 **Transforming NASA's space biology research into interactive, AI-powered insights**
 
