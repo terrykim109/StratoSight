@@ -4,12 +4,12 @@
 
 A group of six students from Centennial Software Engineering Program and Seneca College Computer Programming and Analysis Program for NASA Hackathon Oct 4-5, 2025.
 
-Terry Kim - Seneca College Computer Programming And Analysis 
-Asra Jannat Bari - Centennial College Software Engineering  
-Kayal Jennnifer Christopher - Centennial College Software Engineering   
-Jeremy Ng  - Seneca Collge Computer Programming And Analysis  
-Ashwin Parackal Aji - Centennial College Software Engineering     
-Lamia Alam Shova - Centennial College Software Engineering   
+**Terry Kim** - Seneca College Computer Programming And Analysis   
+**Asra Jannat Bari** - Centennial College Software Engineering      
+**Kayal Jennnifer Christopher** - Centennial College Software Engineering     
+**Jeremy Ng**  - Seneca Collge Computer Programming And Analysis  
+**Ashwin Parackal Aji** - Centennial College Software Engineering     
+**Lamia Alam Shova** - Centennial College Software Engineering   
 
 </div>
 
@@ -138,7 +138,7 @@ Extract maximum value from NASA's existing scientific publications, ensuring no 
 - **Backend:** Next.js API Routes, Node.js
 - **Database:** MongoDB with Mongoose ODM
 - **Authentication:** JWT with httpOnly cookies
-- **AI/ML:** Natural Language Processing for paper analysis
+- **AI/ML:** 
 - **Styling:** Custom CSS with modern design patterns
 - **Deployment:** Vercel
 
