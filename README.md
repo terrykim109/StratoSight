@@ -1,11 +1,17 @@
+<div align="center">
+
 **StratoSight**
 
+A group of six students from Centennial Software Engineering Program and Seneca College Computer Programming and Analysis Program for NASA Hackathon Oct 4-5, 2025.
+
 Asra Jannat Bari - Centennial College Software Engineering  
-Kayal Jennnifer Christopher - Centennial College Software Engineering 
-Jeremy Ng  - Seneca Collge Computer Programming And Analysis
-Ashwin Parackal Aji - Centennial College Software Engineering   
-Lamia Alam Shova - Centennial College Software Engineering 
-Terry Kim - Seneca College Computer Programming And Analysis
+Kayal Jennnifer Christopher - Centennial College Software Engineering   
+Jeremy Ng  - Seneca Collge Computer Programming And Analysis  
+Ashwin Parackal Aji - Centennial College Software Engineering     
+Lamia Alam Shova - Centennial College Software Engineering   
+Terry Kim - Seneca College Computer Programming And Analysis 
+
+</div>
 
 # 🧬 BioVerse - Smart NASA Science Dashboard
 
@@ -241,48 +247,6 @@ We welcome contributions! Here's how you can help:
 3. 💾 Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
 5. 🔀 Open a Pull Request
-
----
-
-## 🐛 Known Issues
-
-- Background image path needs to be configured for deployment
-- Quiz system currently supports single-choice questions only
-- Search functionality uses mock data (AI integration pending)
-
----
-
-## 🗺️ Roadmap
-
-- [ ] Integrate real NASA GeneLab API
-- [ ] Implement advanced AI-powered paper analysis
-- [ ] Add interactive knowledge graph visualization
-- [ ] Support multiple quiz types (multiple choice, true/false)
-- [ ] Add collaborative features (share papers, create collections)
-- [ ] Mobile app version
-- [ ] Multi-language support
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **NASA GeneLab** for providing open access to space biology research
-- **NASA Space Biology Program** for inspiring this project
-- Built for the **NASA Space Biology Hackathon**
-
----
-
-## 📞 Contact & Support
-
-- **Project Lead:** [Your Name]
-- **Email:** your.email@example.com
-- **GitHub Issues:** [Report a bug or request a feature](https://github.com/yourusername/bioverse/issues)
 
 ---
 
