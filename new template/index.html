@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BioVerse — Space Biology Dashboard</title>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet" href="style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+<div class="brand">🧬 <span>BioVerse</span></div>
+<nav class="nav-links">
+<a href="#home">Home</a>
+<a href="#visualization">Visualization</a>
+<a href="#progress">Progress</a>
+<a href="#quiz">Quiz</a>
+<a href="#about">About</a>
+<a href="#" id="openAI">My AI</a>
+</nav>
+</header>
+
+<!-- HERO / HOME -->
+<section id="home" class="hero">
+<div class="bg"></div>
+<div class="hero-inner">
+<div class="hero-left">
+<h1>Transforming NASA Space Biology Data into <span class="accent">Actionable Knowledge</span></h1>
+<p class="subtitle">
+Ask a question below — our AI searches titles & summaries, returns concise answers and related resources.
+</p>
+
+<!-- SEARCH BAR (UI only; backend hook) -->
+<div class="search-row">
+<button class="mic-btn" title="Voice (mic)">🎙️</button>
+<input id="searchInput" class="search-input" placeholder="Ask about living organisms on Mars, e.g. 'plant growth in microgravity'">
+<button id="searchBtn" class="search-btn">🔍 Search</button>
+</div>
+</div>
+
+<div class="hero-right">
+<div class="hero-stats">
+<div class="stat">
+<div class="num">608</div>
+<div class="label">Publications</div>
+</div>
+<div class="stat">
+<div class="num">500+</div>
+<div class="label">Experiments</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- VISUALIZATION (PIE) -->
+<section id="visualization" class="section">
+<h2>📊 Publication Breakdown</h2>
+<p class="muted">Percentage of publications by organism/topic (sample data).</p>
+
+<div class="viz-grid">
+<div class="pie-card">
+<canvas id="pieChart" width="600" height="400"></canvas>
+</div>
+
+<aside class="pie-legend">
+<div class="legend-title">Legend</div>
+<ul>
+<li><span class="swatch humans"></span>Humans — 40%</li>
+<li><span class="swatch microbes"></span>Microbes — 35%</li>
+<li><span class="swatch plants"></span>Plants — 20%</li>
+<li><span class="swatch other"></span>Other — 5%</li>
+</ul>
+<p class="muted small">*Values are sample/demo values editable in code.*</p>
+</aside>
+</div>
+</section>
+
+<!-- AREA OF SCIENTIFIC PROGRESS -->
+<section id="progress" class="section dark">
+<h2>📈 Area of Scientific Progress</h2>
+<p class="muted">Pick years (up to 5) and a topic to visualize publication trends.</p>
+
+<div class="controls">
+<label>Years (choose up to 5):</label>
+<select id="yearsSelect" multiple size="6">
+<!-- years populated by JS -->
+</select>
+
+<label style="margin-left:18px;">Topic:</label>
+<select id="topicSelect">
+<option value="plants">Plants</option>
+<option value="humans">Humans</option>
+<option value="microbes">Microbes</option>
+<option value="water">Water</option>
+<option value="air">Air</option>
+<option value="animals">Animals</option>
+<option value="other">Other</option>
+</select>
+
+<button id="genProgress" class="btn">Generate</button>
+</div>
+
+<div class="progress-chart">
+<canvas id="areaChart" width="900" height="300"></canvas>
+</div>
+
+<p class="muted small">Tip: This simulates how publications for a topic evolved over time; when connected to real metadata this helps spot peaks and gaps.</p>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="section">
+<h2>🧪 Learning Hub — Quiz Generator</h2>
+<p class="muted">Select a topic and answer one question at a time.</p>
+
+<div class="quiz-controls">
+<label>Topic:</label>
+<select id="quizTopic">
+<option value="plants">Plants</option>
+<option value="humans">Humans</option>
+<option value="microbes">Microbes</option>
+<option value="other">Other</option>
+</select>
+<button id="generateQuiz" class="btn">Generate 5 Questions</button>
+</div>
+
+<div id="quizArea" class="quiz-area"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section dark">
+<h2>ℹ️ About & Integration</h2>
+<p class="muted">Search results and AI video generation happen in the Flask backend: summary DB lookup → vector fallback → script generation → AI video tool. Dashboard shows final outputs (answer, article link, YouTube matches, video).</p>
+
+<div class="about-grid">
+<div class="about-card">
+<h4>OSDR</h4>
+<p>Link datasets to publications for deeper inspection.</p>
+</div>
+<div class="about-card">
+<h4>NSLSL</h4>
+<p>Surface related literature beyond the CSV.</p>
+</div>
+<div class="about-card">
+<h4>Task Book</h4>
+<p>Show project-level context & funding info.</p>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div>© 2025 BioVerse • NASA Space Biology Hackathon</div>
+</footer>
+
+<!-- CHAT MODAL -->
+<div id="chatModal" class="chat-modal">
+<div class="chat-box">
+<div class="chat-header">
+<span>My AI</span>
+<div class="chat-controls">
+<button id="minimizeChat" class="chat-btn">➖</button>
+<button id="closeChat" class="chat-btn close-btn">✖</button>
+</div>
+</div>
+<div class="chat-body">
+<p class="greeting">👋 Hey, how can I help you?</p>
+</div>
+<div class="chat-input-row">
+<button class="mic-btn">🎙️</button>
+<input type="text" class="chat-input" placeholder="Type your message...">
+<button class="search-btn">Send</button>
+</div>
+</div>
+</div>
+
+<script>
+/* -------------------------
+Populate years select (2000-2024)
+------------------------- */
+const yearsSelect = document.getElementById('yearsSelect');
+for (let y = 2000; y <= 2024; y++){
+const opt = document.createElement('option');
+opt.value = y;
+opt.text = y;
+yearsSelect.appendChild(opt);
+}
+
+/* -------------------------
+PIE CHART (large)
+------------------------- */
+const pieCtx = document.getElementById('pieChart').getContext('2d');
+const pieChart = new Chart(pieCtx, {
+type: 'pie',
+data: {
+labels: ['Humans','Microbes','Plants','Other'],
+datasets: [{
+data: [40,35,20,5],
+backgroundColor: ['#b892ff','#35f0ff','#9bffb8','#ffb57a'],
+hoverOffset: 8,
+borderColor: '#0b0b12'
+}]
+},
+options: {
+plugins: { legend: { display: false } },
+responsive: true,
+maintainAspectRatio: false
+}
+});
+
+/* -------------------------
+AREA CHART (progress)
+------------------------- */
+const sampleCounts = {
+'plants': [2,3,5,7,12,18,24,30,28,25,20,22,26,30,33,36,40,44,48,50,52,55,58,60,62],
+'humans': [5,8,12,18,25,30,35,40,42,43,45,48,50,52,55,58,62,64,66,68,69,71,72,73,75],
+'microbes': [1,1,2,3,4,6,8,10,12,15,18,20,23,26,29,33,37,42,46,50,52,54,56,58,60],
+'other': [0,0,1,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,9,9,10,10]
+};
+
+const areaCtx = document.getElementById('areaChart').getContext('2d');
+let areaChart = new Chart(areaCtx, {
+type: 'line',
+data: {
+labels: Array.from({length:25}, (_,i) => 2000 + i),
+datasets: [{
+label: 'Publications',
+data: sampleCounts['plants'],
+fill: true,
+backgroundColor: 'rgba(184,146,255,0.12)',
+borderColor: '#b892ff',
+tension: 0.3,
+pointRadius: 4
+}]
+},
+options: {
+scales: {
+x: { title: { display:true, text:'Year' }, ticks: { color:'#c9c9d6' } },
+y: { title: { display:true, text:'# Publications' }, ticks: { color:'#c9c9d6' } }
+},
+plugins: { legend: { display:false } },
+responsive: true,
+maintainAspectRatio: false
+}
+});
+
+// Generate button logic
+document.getElementById('genProgress').addEventListener('click', () => {
+const sel = Array.from(yearsSelect.selectedOptions).map(o => Number(o.value));
+const topic = document.getElementById('topicSelect').value;
+
+if (sel.length === 0) { alert('Please select 1–5 years.'); return; }
+if (sel.length > 5) { alert('Please select at most 5 years.'); return; }
+
+const allYears = Array.from({length:25}, (_,i) => 2000 + i);
+const dataSeries = sampleCounts[topic];
+const minY = Math.min(...sel), maxY = Math.max(...sel);
+const labelsRange = allYears.filter(y => y >= minY && y <= maxY);
+const rangeData = labelsRange.map(y => dataSeries[allYears.indexOf(y)]);
+
+areaChart.data.labels = labelsRange;
+areaChart.data.datasets[0].data = rangeData;
+areaChart.data.datasets[0].label = `${topic.charAt(0).toUpperCase()+topic.slice(1)} publications`;
+areaChart.update();
+});
+
+/* -------------------------
+QUIZ GENERATOR (one-by-one)
+------------------------- */
+const questionBank = {
+  plants:[
+    {q:"Which model plant is commonly used in space experiments?",a:"Arabidopsis thaliana",options:["Arabidopsis thaliana","Maize","Soybean","Rice"]},
+    {q:"Microgravity often alters which part of the plant?",a:"Root orientation",options:["Root orientation","Flower color","Leaf number","Seed size"]},
+    {q:"Which plant process is strongly influenced by light in space?",a:"Phototropism",options:["Phototropism","Respiration","Pollination","Seed dormancy"]},
+    {q:"Which structure helps plants sense gravity?",a:"Statoliths",options:["Statoliths","Chloroplasts","Guard cells","Nucleus"]},
+    {q:"Why are plants vital for space habitats?",a:"Oxygen and food production",options:["Oxygen and food production","Radiation shielding","WiFi signal boost","Navigation aid"]}
+  ],
+  humans:[
+    {q:"What is a major effect of long-duration microgravity on humans?",a:"Muscle atrophy",options:["Muscle atrophy","Improved vision","Increased bone density","Faster metabolism"]},
+    {q:"Which system of the body loses calcium in space?",a:"Skeletal system",options:["Skeletal system","Nervous system","Digestive system","Respiratory system"]},
+    {q:"Which device is used to counteract muscle loss?",a:"Resistance exercise devices",options:["Resistance exercise devices","MRI scanner","Ultrasound machine","Oxygen mask"]},
+    {q:"Which sense is commonly affected due to fluid shift in astronauts?",a:"Vision",options:["Vision","Hearing","Taste","Smell"]},
+    {q:"What medical condition is more likely in astronauts after spaceflight?",a:"Kidney stones",options:["Kidney stones","Common cold","Appendicitis","Chickenpox"]}
+  ],
+  microbes:[
+    {q:"Microbes in microgravity can show increased:",a:"Biofilm formation",options:["Biofilm formation","Photosynthesis","Flight speed","Bone density"]},
+    {q:"Which microbe is often used as a model in space?",a:"E. coli",options:["E. coli","Plasmodium","Yeast","Lactobacillus"]},
+    {q:"Why are microbes a concern in spacecraft?",a:"They can corrode materials and affect health",options:["They can corrode materials and affect health","They improve WiFi","They boost oxygen","They reduce CO2"]},
+    {q:"Which method helps study microbes in orbit?",a:"Omics technologies",options:["Omics technologies","Telescope imaging","Magnet tests","Gravity sensors"]},
+    {q:"Which condition makes microbes adapt differently in space?",a:"Microgravity",options:["Microgravity","Magnetism","Temperature","Vacuum"]}
+  ],
+  other:[
+    {q:"What does OSDR stand for?",a:"Open Science Data Repository",options:["Open Science Data Repository","Official Space Data Resource","Orbital Science Data Register","Open Sample Data Repository"]},
+    {q:"Which agency runs the ISS?",a:"NASA and partners",options:["NASA and partners","Only NASA","Only SpaceX","Only ESA"]},
+    {q:"What is a CubeSat?",a:"Miniaturized satellite",options:["Miniaturized satellite","Space telescope","Rocket booster","Alien probe"]},
+    {q:"Which type of radiation is a major concern in space?",a:"Cosmic radiation",options:["Cosmic radiation","WiFi signals","Infrared light","Ultraviolet rays"]},
+    {q:"Which material is often used in spacecraft shielding?",a:"Aluminum",options:["Aluminum","Plastic","Wood","Glass"]}
+  ]
+};
+
+let quizQuestions = [];
+let currentIndex = 0;
+let score = 0;
+
+document.getElementById('generateQuiz').addEventListener('click', () => {
+  const topic = document.getElementById('quizTopic').value;
+  quizQuestions = [...questionBank[topic]].sort(() => 0.5 - Math.random()).slice(0,5); // pick 5
+  currentIndex = 0;
+  score = 0;
+  renderCurrentQuestion();
+});
+
+function renderCurrentQuestion() {
+  const area = document.getElementById('quizArea');
+  area.innerHTML = '';
+  if (currentIndex >= quizQuestions.length) {
+    area.innerHTML = `<div class="quiz-complete">🎉 Quiz Completed!<br/>You scored <strong>${score}</strong> out of <strong>${quizQuestions.length}</strong>.</div>`;
+    return;
+  }
+
+  const qObj = quizQuestions[currentIndex];
+  const card = document.createElement('div');
+  card.className = 'quiz-card-demo center-card';
+  card.innerHTML = `<div class="qtext"><strong>Q${currentIndex+1}.</strong> ${qObj.q}</div>`;
+
+  qObj.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.innerText = opt;
+    btn.onclick = () => {
+      document.querySelectorAll('.quiz-opt').forEach(b => b.disabled = true);
+      const msg = document.createElement('div');
+      msg.className = 'answer-badge';
+      if (opt === qObj.a) {
+        btn.style.background = '#4ade80';
+        msg.innerText = '✅ Correct';
+        score++;
+      } else {
+        btn.style.background = '#ff7b7b';
+        msg.innerText = `❌ Wrong — Answer: ${qObj.a}`;
+      }
+      card.appendChild(msg);
+
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'btn next-btn';
+      nextBtn.innerText = currentIndex === quizQuestions.length-1 ? 'Finish' : 'Next';
+      nextBtn.onclick = () => { currentIndex++; renderCurrentQuestion(); };
+      card.appendChild(nextBtn);
+    };
+    card.appendChild(btn);
+  });
+
+  area.appendChild(card);
+}
+
+/* -------------------------
+Search button (UI placeholder)
+------------------------- */
+document.getElementById('searchBtn').addEventListener('click', () => {
+alert('Search submitted (UI demo). Backend will handle summary lookup, retrieval, and AI video generation.');
+});
+
+/* -------------------------
+Chat Modal Logic
+------------------------- */
+const chatModal = document.getElementById('chatModal');
+document.getElementById('openAI').onclick = () => chatModal.classList.add('open');
+document.getElementById('closeChat').onclick = () => chatModal.classList.remove('open');
+document.getElementById('minimizeChat').onclick = () => chatModal.classList.toggle('minimized');
+</script>
+</body>
+</html>
